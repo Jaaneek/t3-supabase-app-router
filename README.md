@@ -15,8 +15,6 @@ It allows us to call database in server components through supabase-js, for clie
 
 ## Projects using this starter
 
-For examples on how to use
-
 - PortfolioQuiz [Website](https://www.portfolio-quiz.com/)
 - Friendly Macros [Repo](https://github.com/F-PTS/FriendlyMacros) [Website](https://friendly-macros.vercel.app/)
 - Twitter Clone [Repo](https://github.com/F-PTS/Blogg) [Website](https://blogg-f-pts.vercel.app/)
@@ -50,8 +48,7 @@ npm run prepare:remote
 pnpm prepare:remote
 ```
 
--
-- run the project
+- Run the project
 
 ```
 yarn dev

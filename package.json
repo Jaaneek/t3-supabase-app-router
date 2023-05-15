@@ -10,7 +10,7 @@
     "start": "next start",
     "update-types-local": "supabase gen types typescript --local > src/server/supabase/supabaseTypes.ts",
     "prepare:local": "yarn update-types-local && yarn prisma db pull && yarn prisma generate && yarn prisma-case-format --file prisma/schema.prisma  && yarn prisma generate",
-    "update-types-remote": "supabase gen types typescript --project-id \"pehrhgdbdnurtgjswyfd\" --schema public > src/server/supabaseTypes.ts",
+    "update-types-remote": "supabase gen types typescript --project-id \"PUT YOUR SUPABASE REMOTE API KEY\" --schema public > src/server/supabaseTypes.ts",
     "prepare:remote": "yarn update-types-remote && yarn prisma db pull && yarn prisma generate && yarn prisma-case-format --file prisma/schema.prisma  && yarn prisma generate"
   },
   "dependencies": {

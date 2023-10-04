@@ -21,9 +21,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      - name: Install yarn
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install pnpm
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm install
       - name: Run eslint
-        run: yarn lint
+        run: pnpm lint

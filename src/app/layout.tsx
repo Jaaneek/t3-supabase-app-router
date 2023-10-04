@@ -1,3 +1,5 @@
+import { TailwindIndicator } from "~/components/TailwindIndicator";
+import { Providers } from "~/providers";
 import "~/styles/globals.css";
 
 export const metadata = {
@@ -12,7 +14,10 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <head />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <body>{children}</body>
+        <body>
+          <Providers>{children}</Providers>
+          <TailwindIndicator />
+        </body>
       </html>
     </>
   );

@@ -3,11 +3,10 @@
 import React, { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
-import { LoadingScreen } from "../Loading";
 import { useUser } from "~/providers/AuthProvider/AuthProvider";
 
 export const withPublicRoute = <T extends object>(
-  WrappedComponent: React.FunctionComponent<T>
+  WrappedComponent: React.FunctionComponent<T>,
 ) => {
   const ComponentwithPublicRoute = (props: T) => {
     const router = useRouter();
@@ -20,7 +19,7 @@ export const withPublicRoute = <T extends object>(
       }
     }, [user, isUserDataLoaded, router]);
 
-    if (user || !isUserDataLoaded) return <LoadingScreen />;
+    if (user ?? !isUserDataLoaded) return <p>Loading...</p>;
 
     return <WrappedComponent {...props} />;
   };

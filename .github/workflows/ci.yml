@@ -1,0 +1,29 @@
+defaults:
+  run:
+    working-directory: ./
+
+name: CI on pull request
+
+on: [pull_request]
+
+jobs:
+  prettier-eslint:
+    name: prettier-eslint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install pnpm
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm install
+      - name: Run eslint
+        run: pnpm lint

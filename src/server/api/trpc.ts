@@ -6,17 +6,13 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-
-/**
- * 1. CONTEXT
- *
- * This section defines the "contexts" that are available in the backend API.
- *
- * These allow you to access things when processing a request, like the database, the session, etc.
- */
+import { TRPCError, initTRPC } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import superjson from "superjson";
+import { ZodError } from "zod";
 
-import { prisma } from "~/server/db";
+import { db } from "~/server/db";
+import { getUserAsAdmin } from "../supabase/supabaseClient";
 
 /**
  * This is the actual context you will use in your router. It will be used to process every request
@@ -30,13 +26,11 @@ export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
   const { user } = req.headers.authorization
     ? await getUserAsAdmin(req.headers.authorization)
     : { user: null };
-
   return {
-    prisma,
+    db,
     user,
   };
 };
-
 /**
  * 2. INITIALIZATION
  *
@@ -44,10 +38,6 @@ export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
-import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson";
-import { ZodError } from "zod";
-import { getUserAsAdmin } from "../supabase/supabaseClient";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -92,7 +82,6 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
       code: "UNAUTHORIZED",
     });
   }
-
   return next({
     ctx: {
       user: ctx.user,

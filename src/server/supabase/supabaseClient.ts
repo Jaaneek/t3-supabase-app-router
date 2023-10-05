@@ -13,12 +13,12 @@ export const getServiceSupabase = () =>
         autoRefreshToken: false,
         persistSession: false,
       },
-    }
+    },
   );
 
 export const clientSupabase = createClient<Database>(
   env.NEXT_PUBLIC_SUPABASE_URL,
-  env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 );
 
 export const supabase = () =>

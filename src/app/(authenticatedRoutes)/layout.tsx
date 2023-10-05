@@ -1,7 +1,10 @@
-import { AuthProvider } from "~/providers/AuthProvider";
+import { withPrivateRoute } from "~/providers/AuthProvider/withPrivateRoute";
+import { api } from "~/utils/api";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
-  return <AuthProvider>{children}</AuthProvider>;
+  return <>{children}</>;
 }
 
-export default RootLayout;
+const Layout = withPrivateRoute(RootLayout);
+
+export default api.withTRPC(Layout);

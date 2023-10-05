@@ -33,7 +33,7 @@ export const AuthProvider = (props: any) => {
         setUserSession(session);
         setUser(session?.user ?? null);
         setIsloading(false);
-      }
+      },
     );
 
     return () => {

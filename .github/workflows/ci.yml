@@ -1,0 +1,31 @@
+defaults:
+  run:
+    working-directory: ./
+
+name: CI on pull request
+
+on: [pull_request]
+
+jobs:
+  prettier-eslint:
+    name: prettier-eslint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    env:
+      SKIP_ENV_VALIDATION: true
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install pnpm
+        run: pnpm install
+      - name: Run eslint
+        run: pnpm lint

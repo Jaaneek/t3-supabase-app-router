@@ -28,6 +28,10 @@ const config = {
         fixStyle: "inline-type-imports",
       },
     ],
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      { props: "never", children: "never" },
+    ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
   },
 };

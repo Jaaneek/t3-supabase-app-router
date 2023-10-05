@@ -1,29 +1,30 @@
 "use client";
+
 import { env } from "~/env.mjs";
-import { clientSupabase } from "~/server/supabase/supabaseClient";
+import { supabase } from "~/server/supabase/supabaseClient";
 
 const testAccounts = [
-  { email: "random@gmail.com", password: "testPassword" },
-  { email: "testq2@op.pl", password: "!fewfwe123" },
+  { email: "account1@gmail.com", password: "testPassword1" },
+  { email: "account2@gmail.com", password: "testPassword2" },
 ];
 
 const Page = () => {
   return (
     <div>
-      {env.NEXT_PUBLIC_SELF_HOSTING === "1" && (
+      {env.NODE_ENV === "development" && (
         <div>
           {testAccounts.map((account, index) => (
             <div key={index}>
               <button
                 onClick={() => {
-                  void clientSupabase.auth.signInWithPassword(account);
+                  void supabase().auth.signInWithPassword(account);
                 }}
               >
                 Login {account.email}
               </button>
               <button
                 onClick={() => {
-                  void clientSupabase.auth.signUp(account);
+                  void supabase().auth.signUp(account);
                 }}
               >
                 Register {account.email}

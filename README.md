@@ -78,6 +78,19 @@ If you are not familiar with the different technologies used in this project, pl
 - [tRPC](https://trpc.io)
 - [Supabase](https://supabase.com/docs)
 
+## Authors
+
+👤 **Milosz Jankiewicz**
+
+- Twitter: [@twitter.com/jaaneek/](https://twitter.com/jaaneek)
+- Github: [@Jaaneek](https://github.com/Jaaneek)
+- LinkedIn: [@https://www.linkedin.com/in/jaaneek](https://www.linkedin.com/in/mi%C5%82osz-jankiewicz-554562168/)
+
+👤 **Jakub Czarnowski**
+
+- Github: [@jakubczarnowski](https://github.com/jakubczarnowski)
+- LinkedIn: [@https://www.linkedin.com/in/czarnowskijakub/](https://www.linkedin.com/in/czarnowskijakub/)
+
 ## Learn More
 
 To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:

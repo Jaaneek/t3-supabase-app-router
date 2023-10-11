@@ -88,6 +88,7 @@ If you are not familiar with the different technologies used in this project, pl
 
 👤 **Jakub Czarnowski**
 
+- Twitter: [@twitter.com/akubdev/](https://twitter.com/akubdev)
 - Github: [@jakubczarnowski](https://github.com/jakubczarnowski)
 - LinkedIn: [@https://www.linkedin.com/in/czarnowskijakub/](https://www.linkedin.com/in/czarnowskijakub/)
 

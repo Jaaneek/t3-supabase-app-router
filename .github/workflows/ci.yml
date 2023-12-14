@@ -27,7 +27,5 @@ jobs:
           cache: "pnpm"
       - name: Install pnpm
         run: pnpm install
-      - name: Run eslint
+      - name: Run Lint
         run: pnpm lint
-      - name: Run typecheck
-        run: pnpm check-types

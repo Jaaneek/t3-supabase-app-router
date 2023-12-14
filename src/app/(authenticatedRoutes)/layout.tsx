@@ -1,10 +1,13 @@
-import { withPrivateRoute } from "~/providers/AuthProvider/withPrivateRoute";
-import { api } from "~/utils/api";
+import { type PropsWithChildren } from "react";
+import { PrefetchTRPCQuery } from "~/components/PrefetchTRPCQuery/PrefetchTRPCQuery";
+import { PrivateRoute } from "~/components/PrivateRoute/PrivateRoute";
 
-function RootLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function Layout({ children }: PropsWithChildren) {
+  return (
+    <PrivateRoute>
+      <PrefetchTRPCQuery queryName="auth.getProfile">
+        {children}
+      </PrefetchTRPCQuery>
+    </PrivateRoute>
+  );
 }
-
-const Layout = withPrivateRoute(RootLayout);
-
-export default api.withTRPC(Layout);

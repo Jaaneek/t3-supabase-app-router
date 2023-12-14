@@ -32,13 +32,28 @@ pnpm install
 
 - Copy the .env.example into .env and fill out the envs
 
+### Initial Setup
+
 ## If you want to develop on local supabase instance, follow the steps below:
 
 Then go to supabase/config.toml file and change your service name.
 
-Link the project with your supabase instance:
+Start the database:
 
-- supabase link --project-ref *<*project-id*>*
+- supabase start
+- pnpm prepare:local
+
+## If you want to develop on remote supabase instance, follow the steps below:
+
+Connect supabase to remote instance:
+
+- supabase link --project-ref <_your_project_id_>
+- pnpm prepare:remote
+
+## Common steps
+
+- Fill out environment variables
+- Create Secrets on Github
 
 #### If you want to create migrations by hand, go ahead and use this command:
 

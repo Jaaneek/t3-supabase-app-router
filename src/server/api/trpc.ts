@@ -7,7 +7,6 @@
  * need to use are documented accordingly near the end.
  */
 import { TRPCError, initTRPC } from "@trpc/server";
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
@@ -20,13 +19,15 @@ import { getUserAsAdmin } from "../supabase/supabaseClient";
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
-  const req = _opts.req;
 
-  const { user } = req.headers.authorization
-    ? await getUserAsAdmin(req.headers.authorization)
-    : { user: null };
+export const createTRPCContext = async (opts: { headers: Headers }) => {
+  const headers = opts.headers;
+  const authToken = headers.get("authorization");
+
+  const { user } = authToken ? await getUserAsAdmin(authToken) : { user: null };
+
   return {
+    ...opts,
     db,
     user,
   };
@@ -82,6 +83,7 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
       code: "UNAUTHORIZED",
     });
   }
+
   return next({
     ctx: {
       user: ctx.user,

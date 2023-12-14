@@ -1,25 +1,20 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import { AuthProvider } from "./AuthProvider/AuthProvider";
 import {
   AnalyticsProvider,
   UmamiAnalyticsProvider,
 } from "./AnalyticsProvider/AnalyticsProvider";
-import { api } from "~/utils";
 import React, { type PropsWithChildren } from "react";
 
-function ProvidersBase({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: PropsWithChildren) {
   return (
-    <AuthProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <>
+      <ThemeProvider attribute="class" forcedTheme="light">
         {children}
       </ThemeProvider>
       <AnalyticsProvider />
       <UmamiAnalyticsProvider />
-    </AuthProvider>
+    </>
   );
 }
-export const Providers = api.withTRPC(
-  ProvidersBase,
-) as React.FC<PropsWithChildren>;

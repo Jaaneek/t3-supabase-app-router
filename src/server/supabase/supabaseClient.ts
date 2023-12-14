@@ -28,12 +28,9 @@ export const getUserAsAdmin = async (token: string) => {
   const { data, error } = await getServiceSupabase().auth.getUser(token);
 
   if (error) {
+    console.error(error);
     throw error;
   }
 
   return data;
-};
-
-export const storageBucketsNames = {
-  portfolioFiles: "portfolio-files",
 };

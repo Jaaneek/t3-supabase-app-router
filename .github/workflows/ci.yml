@@ -29,3 +29,5 @@ jobs:
         run: pnpm install
       - name: Run eslint
         run: pnpm lint
+      - name: Run typecheck
+        run: pnpm check-types

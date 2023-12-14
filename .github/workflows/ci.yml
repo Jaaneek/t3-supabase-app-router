@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [16]
     env:
       SKIP_ENV_VALIDATION: true
     steps:
@@ -27,5 +27,5 @@ jobs:
           cache: "pnpm"
       - name: Install pnpm
         run: pnpm install
-      - name: Run Lint
+      - name: Run eslint
         run: pnpm lint

@@ -1,7 +1,7 @@
 create table "public"."profiles" (
     "id" uuid not null,
     "updated_at" timestamp with time zone,
-    "email" text,
+    "username" text,
     "full_name" text,
     "avatar_url" text
 );
@@ -11,7 +11,7 @@ alter table "public"."profiles" enable row level security;
 
 CREATE UNIQUE INDEX profiles_pkey ON public.profiles USING btree (id);
 
-CREATE UNIQUE INDEX profiles_email_key ON public.profiles USING btree (email);
+CREATE UNIQUE INDEX profiles_username_key ON public.profiles USING btree (username);
 
 alter table "public"."profiles" add constraint "profiles_pkey" PRIMARY KEY using index "profiles_pkey";
 
@@ -19,7 +19,11 @@ alter table "public"."profiles" add constraint "profiles_id_fkey" FOREIGN KEY (i
 
 alter table "public"."profiles" validate constraint "profiles_id_fkey";
 
-alter table "public"."profiles" add constraint "profiles_email_key" UNIQUE using index "profiles_email_key";
+alter table "public"."profiles" add constraint "profiles_username_key" UNIQUE using index "profiles_username_key";
+
+alter table "public"."profiles" add constraint "username_length" CHECK ((char_length(username) >= 3)) not valid;
+
+alter table "public"."profiles" validate constraint "username_length";
 
 set check_function_bodies = off;
 
@@ -29,16 +33,13 @@ CREATE OR REPLACE FUNCTION public.handle_new_user()
  SECURITY DEFINER
 AS $function$
 begin
-  insert into public.profiles (id, full_name, email)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.email);
+  insert into public.profiles (id, full_name, avatar_url)
+  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
   return new;
 end;
 $function$
 ;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
-  
+
 create policy "Public profiles are viewable by everyone."
 on "public"."profiles"
 as permissive

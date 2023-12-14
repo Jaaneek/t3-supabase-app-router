@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useUser } from "~/providers/AuthProvider/AuthProvider";
+import { api } from "~/utils/api";
 
 export const withPrivateRoute = <T extends object>(
   WrappedComponent: React.FunctionComponent<T>,
@@ -11,15 +12,16 @@ export const withPrivateRoute = <T extends object>(
     const router = useRouter();
 
     const { user, isLoading } = useUser();
-
+    const { isLoading: isProfileLoading } = api.auth.getProfile.useQuery();
+    const isUserDataLoaded = !isLoading && !isProfileLoading;
     useEffect(() => {
-      if (!user && !isLoading) {
+      if (!user && isUserDataLoaded) {
         router.push("/login");
       }
-    }, [user, router, isLoading]);
+    }, [user, isUserDataLoaded, router]);
 
-    if (!user) return null;
-
+    // TODO: Add loading component
+    if (!user || !isUserDataLoaded) return <p>Loading...</p>;
     return <WrappedComponent {...props} />;
   };
 

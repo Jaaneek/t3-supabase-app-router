@@ -1,22 +1,17 @@
-import Link from "next/link";
-import { Suspense } from "react";
-import { ServerDataStreaming } from "./_components/ServerDataStreaming";
+"use client";
 
-const Homepage = async () => {
+import Link from "next/link";
+import { api } from "~/utils";
+
+const Homepage = () => {
+  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <div className="flex flex-col items-center gap-6">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Nextjs 14 App router starter
-          </h1>
-          <p className="font-extrabold tracking-tight text-white sm:text-[2rem]">
-            Based On
-          </p>
-          <p className="text-xl font-extrabold tracking-tight text-white sm:text-[3rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </p>
-        </div>
+        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+        </h1>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
           <Link
             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
@@ -41,21 +36,9 @@ const Homepage = async () => {
             </div>
           </Link>
         </div>
-        <div className="flex w-full flex-1 flex-col items-center gap-4">
-          <Link href="/login" className="text-lg text-white">
-            Login
-          </Link>
-          <Link href="/authenticated" className="text-lg text-white">
-            Authenticated Route Example
-          </Link>
-        </div>
-        <Suspense
-          fallback={
-            <p className="text-2xl text-white">Streaming TRPC Query...</p>
-          }
-        >
-          <ServerDataStreaming />
-        </Suspense>
+        <p className="text-2xl text-white">
+          {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+        </p>
       </div>
     </main>
   );

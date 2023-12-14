@@ -289,7 +289,7 @@ model Users {
 model Profiles {
   id        String    @id @db.Uuid
   updatedAt DateTime? @map("updated_at") @db.Timestamptz(6)
-  email     String?   @unique
+  username  String?   @unique
   fullName  String?   @map("full_name")
   avatarUrl String?   @map("avatar_url")
   users     Users     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction)

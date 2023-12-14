@@ -36,7 +36,7 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
           <TRPCReactProvider headers={headers()}>
             <AuthProvider {...user}>
               <Providers>
-                  {children}
+                {children}
                 <Toaster />
               </Providers>
             </AuthProvider>

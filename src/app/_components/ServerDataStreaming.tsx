@@ -5,9 +5,5 @@ export async function ServerDataStreaming() {
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  return (
-    <p className="text-2xl text-white">
-       {data.greeting} 
-    </p>
-  );
+  return <p className="text-2xl text-white">{data.greeting}</p>;
 }

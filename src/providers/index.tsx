@@ -7,7 +7,7 @@ import {
 } from "./AnalyticsProvider/AnalyticsProvider";
 import React, { type PropsWithChildren } from "react";
 
-export function Providers({ children,  }: PropsWithChildren ) {
+export function Providers({ children }: PropsWithChildren) {
   return (
     <>
       <ThemeProvider attribute="class" forcedTheme="light">

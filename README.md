@@ -47,7 +47,7 @@ Start the database:
 
 Connect supabase to remote instance:
 
-- supabase link --project-ref <*your_project_id*>
+- supabase link --project-ref <_your_project_id_>
 - pnpm prepare:remote
 
 ## Common steps

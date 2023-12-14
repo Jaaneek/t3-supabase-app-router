@@ -6,14 +6,16 @@ const Homepage = async () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <div className="flex flex-col gap-6 items-center">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Nextjs 14 App router starter
-        </h1>
-        <p className="font-extrabold tracking-tight text-white sm:text-[2rem]">Based On</p>
-        <p className="text-xl font-extrabold tracking-tight text-white sm:text-[3rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </p>
+        <div className="flex flex-col items-center gap-6">
+          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+            Nextjs 14 App router starter
+          </h1>
+          <p className="font-extrabold tracking-tight text-white sm:text-[2rem]">
+            Based On
+          </p>
+          <p className="text-xl font-extrabold tracking-tight text-white sm:text-[3rem]">
+            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+          </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
           <Link
@@ -38,19 +40,20 @@ const Homepage = async () => {
               deploy it.
             </div>
           </Link>
-
         </div>
-          <div className="flex flex-col gap-4 items-center w-full flex-1">
-        
-        <Link href="/login"  className="text-lg text-white">
+        <div className="flex w-full flex-1 flex-col items-center gap-4">
+          <Link href="/login" className="text-lg text-white">
             Login
           </Link>
-          <Link href="/authenticated"  className="text-lg text-white">
+          <Link href="/authenticated" className="text-lg text-white">
             Authenticated Route Example
           </Link>
-          </div>
-        <Suspense fallback={    (<p className="text-2xl text-white">
-    Streaming TRPC Query...</p>)}>
+        </div>
+        <Suspense
+          fallback={
+            <p className="text-2xl text-white">Streaming TRPC Query...</p>
+          }
+        >
           <ServerDataStreaming />
         </Suspense>
       </div>

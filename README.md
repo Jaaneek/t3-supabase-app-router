@@ -53,7 +53,6 @@ Connect supabase to remote instance:
 ## Common steps
 
 - Fill out environment variables
-- Add project id to CI/CD
 - Create Secrets on Github
 
 #### If you want to create migrations by hand, go ahead and use this command:

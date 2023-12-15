@@ -17,8 +17,8 @@ It allows us to call database in server components through supabase-js, for clie
 ## Projects using this starter
 
 - PortfolioQuiz [Website](https://www.portfolio-quiz.com/)
-- Friendly Macros [Repo](https://github.com/F-PTS/FriendlyMacros) [Website](https://friendly-macros.vercel.app/)
-- Twitter Clone [Repo](https://github.com/F-PTS/Blogg) [Website](https://blogg-f-pts.vercel.app/)
+- FreeLogo.dev [Website](https://www.freelogo.dev/)
+- FeastQR [Repo](https://github.com/jakubczarnowski/FeastQR) [Website](https://www.feastqr.com)
 - Instagram Clone [Repo](https://github.com/jakubczarnowski/instagram-clone) [Website](https://instagram-clone-eight-mu.vercel.app/)
 
 ## What's next? How do I make an app with this?
@@ -103,7 +103,7 @@ If you are not familiar with the different technologies used in this project, pl
 
 👤 **Jakub Czarnowski**
 
-- Twitter: [@twitter.com/akubdev/](https://twitter.com/akubdev)
+- Twitter: [@twitter.com/charnowsky/](https://twitter.com/charnowsky)
 - Github: [@jakubczarnowski](https://github.com/jakubczarnowski)
 - LinkedIn: [@https://www.linkedin.com/in/czarnowskijakub/](https://www.linkedin.com/in/czarnowskijakub/)
 

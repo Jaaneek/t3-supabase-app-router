@@ -65,6 +65,8 @@ Then go to supabase/migrations folder and add your SQL there.
 
 - pnpm db:diff <_migration_name_>
 
+When a pull request changes files in `supabase/migrations`, [RattleCheck](.github/workflows/rattlecheck.yml) compares SQL permissions against the base branch and flags new high or critical findings at the affected line. It reads the committed migrations without connecting to the local or hosted database.
+
 ## Run these initial commands
 
 Every time you change something on local instance:
